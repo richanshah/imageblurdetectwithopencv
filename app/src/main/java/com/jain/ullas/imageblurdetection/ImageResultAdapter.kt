@@ -1,3 +1,4 @@
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,9 @@ class ImageResultAdapter(private val imageResults: List<ImageResult>) :
         val statusTextView: TextView = view.findViewById(R.id.statusTextView)
         val thresholdTextView: TextView = view.findViewById(R.id.thresholdTextView)
         val scoreTextView: TextView = view.findViewById(R.id.scoreTextView)
+
+        // Track if bitmap is assigned to recycle properly
+        var currentBitmap: Bitmap? = null
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +29,14 @@ class ImageResultAdapter(private val imageResults: List<ImageResult>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val imageResult = imageResults[position]
-        holder.imageView.setImageBitmap(imageResult.bitmap)
+
+        // Recycle the previous bitmap to avoid memory leaks
+//        holder.currentBitmap?.recycle()
+
+        // Set new bitmap and update the currentBitmap reference
+//        holder.imageView.setImageBitmap(imageResult.bitmap)
+//        holder.currentBitmap = imageResult.bitmap
+
         holder.fileNameTextView.text = imageResult.fileName
         holder.statusTextView.text = "Status: ${if (imageResult.isBlurred) "Blurred" else "Not Blurred"}"
         holder.thresholdTextView.text = "Threshold: ${imageResult.threshold}"
@@ -33,4 +44,10 @@ class ImageResultAdapter(private val imageResults: List<ImageResult>) :
     }
 
     override fun getItemCount() = imageResults.size
+
+    // Ensure bitmaps are recycled when the adapter is cleared
+    fun clearBitmaps() {
+        imageResults.forEach { it.bitmap.recycle() }
+    }
 }
+

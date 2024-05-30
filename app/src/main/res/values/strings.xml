@@ -6,5 +6,7 @@
     <string name="result_from_opencv_with_file">File: %1$s\nStatus: %2$s\nThreshold: %3$s\nScore: %4$s\n</string>
     <string name="result_from_opencv">OpenCV : %1s \n Threshold value is %2s \n current score is %3s</string>
     <string name="result_from_renderscript">Renderscript : %1s \n Most luminous color is %2s</string>
-    <string name="select_images">Select Images</string>
+    <string name="select_images">Fetch Images</string>
+    <string name="delete_images">Delete Blurred Images</string>
+    <string name="total_images">Total images</string>
 </resources>
