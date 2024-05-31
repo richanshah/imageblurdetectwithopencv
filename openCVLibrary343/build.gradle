@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 34  // Set this to the desired API level
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion 34  // Set this to the desired API level
     }
 
     buildTypes {
